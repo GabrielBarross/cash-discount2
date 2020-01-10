@@ -1,0 +1,10 @@
+{
+    "store.product.cash": {
+        "allowed": [
+            "cash-discount"
+        ]
+    },
+    "cash-discount": {
+        "component": "CashDiscount"
+    }
+}

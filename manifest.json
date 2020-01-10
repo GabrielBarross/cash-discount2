@@ -1,0 +1,22 @@
+{
+  "vendor": "vtex",
+  "name": "cash-discount",
+  "version": "0.0.0",
+  "title": "cash-discount",
+  "description": "cash-discount",
+  "builders": {
+    "store": "0.x",
+    "messages": "1.x",
+    "react": "3.x"
+  },
+  "dependencies": {
+    "vtex.store": "2.x",
+    "vtex.css-handles": "0.x",
+    "vtex.product-context": "0.x"
+  },
+  "registries": [
+    "smartcheckout"
+  ],
+  "policies": [],
+  "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
+}

@@ -1,0 +1,6 @@
+{
+  "store/cash-discount.cash-text": "In Cash",
+  "admin/editor.cash-discount.title": "In Cash Discount",
+  "admin/editor.cash-discount.percentage": "Discount Value (in %)",
+  "admin/editor.cash-discount.minimumprice": "Minimum Price for Discount"
+}

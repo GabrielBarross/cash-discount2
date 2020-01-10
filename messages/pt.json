@@ -1,0 +1,6 @@
+{
+  "store/cash-discount.cash-text": "A Vista",
+  "admin/editor.cash-discount.title": "Desconto a vista",
+  "admin/editor.cash-discount.percentage": "Valor do Desconto (em %)",
+  "admin/editor.cash-discount.minimumprice": "Preço Mínimo para Desconto"
+}
