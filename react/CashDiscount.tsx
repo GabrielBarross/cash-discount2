@@ -2,18 +2,25 @@ import React, { useState, useEffect } from 'react'
 import useProduct from 'vtex.product-context/useProduct'
 import { useCssHandles } from 'vtex.css-handles'
 import { FormattedMessage, defineMessages } from 'react-intl'
+import { useRuntime } from 'vtex.render-runtime'
 
 const CashDiscount: StorefrontFunctionComponent<Props> = ({ percentageNumber, minimumPrice }) => {
+
+
+  const runtime = useRuntime()
+  const {
+    culture: { customCurrencySymbol }
+  } = runtime
+
   const { selectedItem } = useProduct()
   const price = selectedItem.sellers[0].commertialOffer.Price
-  const [cashPrice, setCashPrice] = useState<number>(price)
+  const [cashPrice, setCashPrice] = useState<string>(price.toFixed(2))
   const percentage = percentageNumber / 100
   useEffect(() => {
-    console.log(minimumPrice)
     const discountResult = price * percentage
-    setCashPrice(price - discountResult)
-    return
-  }, [])
+    setCashPrice((price - discountResult).toFixed(2))
+  }, [percentageNumber])
+
 
   const CSS_HANDLES_CASH = ['cashContainer', 'cashText', 'cashNumber']
   const handles = useCssHandles(CSS_HANDLES_CASH)
@@ -23,13 +30,13 @@ const CashDiscount: StorefrontFunctionComponent<Props> = ({ percentageNumber, mi
       <>
         <div className={`${handles.cashContainer}`}>
           <p className={`${handles.cashText} f4 c-emphasis`}>
-            <span className={`${handles.cashNumber} b`}>{cashPrice}</span>{' '}
+            <span className={`${handles.cashNumber} b`}>{customCurrencySymbol}{cashPrice}</span>{' '}
             <FormattedMessage id="store/cash-discount.cash-text" />
           </p>
         </div>
       </>
     )
-  } else return <></>
+  } return <></>
 }
 
 interface Props {
@@ -61,7 +68,6 @@ const messages = defineMessages({
   }
 })
 
-//This is the schema form that will render the editable props on SiteEditor
 CashDiscount.schema = {
   title: messages.title.id,
   description: messages.description.id,
