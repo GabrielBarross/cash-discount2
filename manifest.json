@@ -12,7 +12,9 @@
   "dependencies": {
     "vtex.store": "2.x",
     "vtex.css-handles": "0.x",
-    "vtex.product-context": "0.x"
+    "vtex.product-context": "0.x",
+    "vtex.product-summary-context": "0.x",
+    "vtex.product-summary": "2.x"
   },
   "registries": [
     "smartcheckout"
