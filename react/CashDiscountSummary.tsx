@@ -5,8 +5,6 @@ import { FormattedMessage, defineMessages } from 'react-intl'
 import { useRuntime } from 'vtex.render-runtime'
 
 const CashDiscountSummary: StorefrontFunctionComponent<Props> = ({ percentageNumber, minimumPrice }) => {
-
-
     const runtime = useRuntime()
     const {
         culture: { customCurrencySymbol }
