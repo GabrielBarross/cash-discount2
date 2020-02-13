@@ -17,7 +17,7 @@ const CashDiscount: StorefrontFunctionComponent<Props> = ({ percentageNumber, mi
   const percentage = percentageNumber / 100
   useEffect(() => {
     const discountResult = price * percentage
-    setCashPrice((price - discountResult).toFixed(2))
+    setCashPrice((price - discountResult).toFixed(2).replace(".", ","))
   }, [percentageNumber])
 
 

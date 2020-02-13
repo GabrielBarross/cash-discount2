@@ -3,9 +3,10 @@
     "admin/editor.cash-discount.title": "In Cash Discount",
     "admin/editor.cash-discount.percentage": "Discount Value (in %)",
     "admin/editor.cash-discount.minimumprice": "Minimum Price for Discount",
+    "admin/editor.cash-discount.description": "Fixed cash discount settings for products",
     "store/cash-discount-summary.cash-text": "In Cash",
     "admin/editor.cash-discount-summary.title": "In Cash Discount",
     "admin/editor.cash-discount-summary.percentage": "Discount Value (in %)",
     "admin/editor.cash-discount-summary.minimumprice": "Minimum Price for Discount",
-    "admin/editor.cash-discount.description": "simple description"
+    "admin/editor.cash-discount-summary.description": "Fixed cash discount settings for products"
 }

@@ -19,7 +19,7 @@ const CashDiscountSummary: StorefrontFunctionComponent<Props> = ({ percentageNum
         price = selectedItem.sellers[0].commertialOffer.Price
         useEffect(() => {
             const discountResult = price * percentage
-            setCashPrice((price - discountResult).toFixed(2))
+            setCashPrice((price - discountResult).toFixed(2).replace(".", ","))
         }, [percentageNumber])
     }
 
@@ -30,7 +30,7 @@ const CashDiscountSummary: StorefrontFunctionComponent<Props> = ({ percentageNum
         return (
             <>
                 <div className={`${handles.cashContainer}`}>
-                    <p className={`${handles.cashText} f4 c-emphasis`}>
+                    <p className={`${handles.cashText} f4 c-emphasis ma0`}>
                         <span className={`${handles.cashNumber} b`}>{customCurrencySymbol}{cashPrice}</span>{' '}
                         <FormattedMessage id="store/cash-discount-summary.cash-text" />
                     </p>
