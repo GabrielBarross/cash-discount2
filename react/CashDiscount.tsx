@@ -4,6 +4,7 @@ import { useCssHandles } from 'vtex.css-handles'
 import { FormattedMessage, defineMessages } from 'react-intl'
 import { useRuntime } from 'vtex.render-runtime'
 
+const CSS_HANDLES_CASH = ['cashContainer', 'cashText', 'cashNumber']
 const CashDiscount: StorefrontFunctionComponent<Props> = ({ percentageNumber, minimumPrice }) => {
 
   const runtime = useRuntime()
@@ -21,7 +22,6 @@ const CashDiscount: StorefrontFunctionComponent<Props> = ({ percentageNumber, mi
   }, [percentageNumber])
 
 
-  const CSS_HANDLES_CASH = ['cashContainer', 'cashText', 'cashNumber']
   const handles = useCssHandles(CSS_HANDLES_CASH)
 
   if (price >= minimumPrice && cashPrice != price) {

@@ -4,7 +4,8 @@ import { useCssHandles } from 'vtex.css-handles'
 import { FormattedMessage, defineMessages } from 'react-intl'
 import { useRuntime } from 'vtex.render-runtime'
 
-const CashDiscountSummary: StorefrontFunctionComponent<Props> = ({ percentageNumber, minimumPrice }) => {
+const CSS_HANDLES_CASH = ['cashContainer', 'cashText', 'cashNumber']
+const CashDiscountSummary: StorefrontFunctionComponent<Props> = ({ percentageNumber, minimumPrice, }) => {
     const runtime = useRuntime()
     const {
         culture: { customCurrencySymbol }
@@ -12,18 +13,19 @@ const CashDiscountSummary: StorefrontFunctionComponent<Props> = ({ percentageNum
 
     const { selectedItem } = useProductSummary()
     const [cashPrice, setCashPrice] = useState<string>('')
-    let price: number = 0;
+    const [price, setPrice] = useState<number>(0)
+
 
     if (selectedItem) {
-        const percentage = percentageNumber / 100
-        price = selectedItem.sellers[0].commertialOffer.Price
-        useEffect(() => {
-            const discountResult = price * percentage
-            setCashPrice((price - discountResult).toFixed(2).replace(".", ","))
-        }, [percentageNumber])
+        setPrice(selectedItem.sellers[0].commertialOffer.Price)
     }
 
-    const CSS_HANDLES_CASH = ['cashContainer', 'cashText', 'cashNumber']
+    useEffect(() => {
+        const percentage = percentageNumber / 100
+        const discountResult = price * percentage
+        setCashPrice((price - discountResult).toFixed(2).replace(".", ","))
+    }, [percentageNumber])
+
     const handles = useCssHandles(CSS_HANDLES_CASH)
 
     if (price >= minimumPrice && cashPrice != price.toString()) {
