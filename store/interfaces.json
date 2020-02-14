@@ -1,16 +1,6 @@
 {
-    "store.product.cash": {
-        "allowed": [
-            "cash-discount"
-        ]
-    },
     "cash-discount": {
         "component": "CashDiscount"
-    },
-    "product-summary.shelf.cash": {
-        "allowed": [
-            "cash-discount-summary"
-        ]
     },
     "cash-discount-summary": {
         "component": "CashDiscountSummary"
