@@ -15,29 +15,27 @@ const CashDiscountSummary: StorefrontFunctionComponent<Props> = ({ percentageNum
     const [cashPrice, setCashPrice] = useState<string>('')
     const [price, setPrice] = useState<number>(0)
 
-
-    if (selectedItem) {
-        setPrice(selectedItem.sellers[0].commertialOffer.Price)
-    }
-
     useEffect(() => {
-        const percentage = percentageNumber / 100
-        const discountResult = price * percentage
-        setCashPrice((price - discountResult).toFixed(2).replace(".", ","))
-    }, [percentageNumber])
+        if (selectedItem) {
+            let priceCurrent = selectedItem.sellers[0].commertialOffer.Price;
+            const percentage = percentageNumber / 100
+            const discountResult = priceCurrent * percentage
+            setCashPrice((priceCurrent - discountResult).toFixed(2).replace(".", ","))
+            setPrice(priceCurrent)
+        }
+    }, [selectedItem, percentageNumber])
+
 
     const handles = useCssHandles(CSS_HANDLES_CASH)
 
     if (price >= minimumPrice && cashPrice != price.toString()) {
         return (
-            <>
-                <div className={`${handles.cashContainer}`}>
-                    <p className={`${handles.cashText} f4 c-emphasis ma0`}>
-                        <span className={`${handles.cashNumber} b`}>{customCurrencySymbol}{cashPrice}</span>{' '}
-                        <FormattedMessage id="store/cash-discount-summary.cash-text" />
-                    </p>
-                </div>
-            </>
+            <div className={`${handles.cashContainer}`}>
+                <p className={`${handles.cashText} f4 c-emphasis ma0`}>
+                    <span className={`${handles.cashNumber} b`}>{customCurrencySymbol}{cashPrice}</span>{' '}
+                    <FormattedMessage id="store/cash-discount-summary.cash-text" />
+                </p>
+            </div>
         )
     } return <></>
 }

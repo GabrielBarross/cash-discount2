@@ -26,14 +26,12 @@ const CashDiscount: StorefrontFunctionComponent<Props> = ({ percentageNumber, mi
 
   if (price >= minimumPrice && cashPrice != price) {
     return (
-      <>
-        <div className={`${handles.cashContainer}`}>
-          <p className={`${handles.cashText} f4 c-emphasis ma0`}>
-            <span className={`${handles.cashNumber} b`}>{customCurrencySymbol}{cashPrice}</span>{' '}
-            <FormattedMessage id="store/cash-discount.cash-text" />
-          </p>
-        </div>
-      </>
+      <div className={`${handles.cashContainer}`}>
+        <p className={`${handles.cashText} f4 c-emphasis ma0`}>
+          <span className={`${handles.cashNumber} b`}>{customCurrencySymbol}{cashPrice}</span>{' '}
+          <FormattedMessage id="store/cash-discount.cash-text" />
+        </p>
+      </div>
     )
   } return <></>
 }
