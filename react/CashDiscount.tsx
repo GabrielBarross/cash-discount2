@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import useProduct from 'vtex.product-context/useProduct'
 import { useCssHandles } from 'vtex.css-handles'
-import { FormattedMessage, defineMessages } from 'react-intl'
+import { defineMessages } from 'react-intl'
 import { useRuntime } from 'vtex.render-runtime'
 
 const CSS_HANDLES_CASH = ['cashContainer', 'cashText', 'cashNumber']
-const CashDiscount: StorefrontFunctionComponent<Props> = ({ percentageNumber, minimumPrice }) => {
+const CashDiscount: StorefrontFunctionComponent<Props> = ({ percentageNumber, minimumPrice, discountDescription }) => {
 
   const runtime = useRuntime()
   const {
@@ -24,12 +24,11 @@ const CashDiscount: StorefrontFunctionComponent<Props> = ({ percentageNumber, mi
 
   const handles = useCssHandles(CSS_HANDLES_CASH)
 
-  if (price >= minimumPrice && cashPrice != price) {
+  if (price >= minimumPrice && cashPrice != price && price != 0) {
     return (
       <div className={`${handles.cashContainer}`}>
         <p className={`${handles.cashText} f4 c-emphasis ma0`}>
-          <span className={`${handles.cashNumber} b`}>{customCurrencySymbol}{cashPrice}</span>{' '}
-          <FormattedMessage id="store/cash-discount.cash-text" />
+          <span className={`${handles.cashNumber} b`}>{customCurrencySymbol}{cashPrice}{' '}{discountDescription}</span>
         </p>
       </div>
     )
@@ -38,12 +37,14 @@ const CashDiscount: StorefrontFunctionComponent<Props> = ({ percentageNumber, mi
 
 interface Props {
   percentageNumber: number,
-  minimumPrice: number
+  minimumPrice: number,
+  discountDescription: string
 }
 
 CashDiscount.defaultProps = {
   percentageNumber: 0,
-  minimumPrice: 0
+  minimumPrice: 0,
+  discountDescription: " A Vista"
 }
 
 const messages = defineMessages({
@@ -62,6 +63,10 @@ const messages = defineMessages({
   minimumtitle: {
     defaultMessage: '',
     id: 'admin/editor.cash-discount.minimumprice'
+  },
+  descriptiondiscount: {
+    defaultMessage: '',
+    id: 'admin/editor.cash-discount-summary.descriptiondiscount'
   }
 })
 
@@ -81,6 +86,11 @@ CashDiscount.schema = {
       description: messages.minimumtitle.id,
       type: "number",
       default: 0
+    },
+    discountDescription: {
+      title: messages.descriptiondiscount.id,
+      type: "string",
+      default: "A Vista"
     }
   },
 }
