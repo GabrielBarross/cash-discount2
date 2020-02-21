@@ -2,14 +2,10 @@ import React, { useState, useEffect } from 'react'
 import { useProductSummary } from 'vtex.product-summary-context/ProductSummaryContext'
 import { useCssHandles } from 'vtex.css-handles'
 import { defineMessages } from 'react-intl'
-import { useRuntime } from 'vtex.render-runtime'
+import { FormattedCurrency } from 'vtex.format-currency'
 
 const CSS_HANDLES_CASH = ['cashContainer', 'cashText', 'cashNumber']
 const CashDiscountSummary: StorefrontFunctionComponent<Props> = ({ percentageNumber, minimumPrice, discountDescription }) => {
-    const runtime = useRuntime()
-    const {
-        culture: { customCurrencySymbol }
-    } = runtime
 
     const { selectedItem } = useProductSummary()
     const [cashPrice, setCashPrice] = useState<string>('')
@@ -21,7 +17,7 @@ const CashDiscountSummary: StorefrontFunctionComponent<Props> = ({ percentageNum
             let priceCurrent = selectedItem.sellers[0].commertialOffer.Price;
             const percentage = percentageNumber / 100
             const discountResult = priceCurrent * percentage
-            setCashPrice((priceCurrent - discountResult).toFixed(2).replace(".", ","))
+            setCashPrice((priceCurrent - discountResult).toFixed(2))
             setPrice(priceCurrent)
         }
     }, [selectedItem, percentageNumber])
@@ -34,7 +30,7 @@ const CashDiscountSummary: StorefrontFunctionComponent<Props> = ({ percentageNum
         return (
             <div className={`${handles.cashContainer}`}>
                 <p className={`${handles.cashText} f4 c-emphasis ma0`}>
-                    <span className={`${handles.cashNumber} b`}>{customCurrencySymbol}{cashPrice}{' '}{discountDescription}</span>
+                    <span className={`${handles.cashNumber} b`}><FormattedCurrency value={cashPrice} />{' '}{discountDescription}</span>
                 </p>
             </div>
         )
