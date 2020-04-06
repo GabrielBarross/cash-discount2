@@ -4,9 +4,11 @@
   "admin/editor.cash-discount.percentage": "Valor do Desconto (em %)",
   "admin/editor.cash-discount.minimumprice": "Minimum Price for Discount",
   "admin/editor.cash-discount.description": "Configurações fixas de desconto a vista para os produtos",
+  "admin/editor.cash-discount.descriptiondiscount": "Mensagem para o desconto",
   "store/cash-discount-summary.cash-text": "A Vista",
   "admin/editor.cash-discount-summary.title": "Desconto a vista",
   "admin/editor.cash-discount-summary.percentage": "Valor do Desconto (em %)",
   "admin/editor.cash-discount-summary.minimumprice": "Minimum Price for Discount",
-  "admin/editor.cash-discount-summary.description": "Configurações fixas de desconto a vista para os produtos"
+  "admin/editor.cash-discount-summary.description": "Configurações fixas de desconto a vista para os produtos",
+  "admin/editor.cash-discount-summary.descriptiondiscount": "Mensagem para o desconto"
 }
