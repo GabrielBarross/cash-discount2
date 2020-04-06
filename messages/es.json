@@ -4,9 +4,11 @@
   "admin/editor.cash-discount.percentage": "Cantidad de Descuento (en %)",
   "admin/editor.cash-discount.minimumprice": "Precio Mínimo para Descuento",
   "admin/editor.cash-discount.description": "Configuraciones de descuento en efectivo para productos",
+  "admin/editor.cash-discount.descriptiondiscount": "Texto de descuento",
   "store/cash-discount-summary.cash-text": "Al contado",
   "admin/editor.cash-discount-summary.title": "Descuento al contado",
   "admin/editor.cash-discount-summary.percentage": "Cantidad de Descuento (en %)",
   "admin/editor.cash-discount-summary.minimumprice": "Precio Mínimo para Descuento",
-  "admin/editor.cash-discount-summary.description": "Configuraciones de descuento en efectivo para productos"
+  "admin/editor.cash-discount-summary.description": "Configuraciones de descuento en efectivo para productos",
+  "admin/editor.cash-discount-summary.descriptiondiscount": "Texto de descuento"
 }

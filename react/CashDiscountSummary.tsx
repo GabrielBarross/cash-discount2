@@ -1,39 +1,36 @@
 import React, { useState, useEffect } from 'react'
 import { useProductSummary } from 'vtex.product-summary-context/ProductSummaryContext'
 import { useCssHandles } from 'vtex.css-handles'
-import { FormattedMessage, defineMessages } from 'react-intl'
-import { useRuntime } from 'vtex.render-runtime'
+import { defineMessages } from 'react-intl'
+import { FormattedCurrency } from 'vtex.format-currency'
 
 const CSS_HANDLES_CASH = ['cashContainer', 'cashText', 'cashNumber']
-const CashDiscountSummary: StorefrontFunctionComponent<Props> = ({ percentageNumber, minimumPrice, }) => {
-    const runtime = useRuntime()
-    const {
-        culture: { customCurrencySymbol }
-    } = runtime
+const CashDiscountSummary: StorefrontFunctionComponent<Props> = ({ percentageNumber, minimumPrice, discountDescription }) => {
 
     const { selectedItem } = useProductSummary()
     const [cashPrice, setCashPrice] = useState<string>('')
     const [price, setPrice] = useState<number>(0)
+
 
     useEffect(() => {
         if (selectedItem) {
             let priceCurrent = selectedItem.sellers[0].commertialOffer.Price;
             const percentage = percentageNumber / 100
             const discountResult = priceCurrent * percentage
-            setCashPrice((priceCurrent - discountResult).toFixed(2).replace(".", ","))
+            setCashPrice((priceCurrent - discountResult).toFixed(2))
             setPrice(priceCurrent)
         }
     }, [selectedItem, percentageNumber])
 
 
+
     const handles = useCssHandles(CSS_HANDLES_CASH)
 
-    if (price >= minimumPrice && cashPrice != price.toString()) {
+    if (price >= minimumPrice && cashPrice != price.toString() && price != 0) {
         return (
             <div className={`${handles.cashContainer}`}>
                 <p className={`${handles.cashText} f4 c-emphasis ma0`}>
-                    <span className={`${handles.cashNumber} b`}>{customCurrencySymbol}{cashPrice}</span>{' '}
-                    <FormattedMessage id="store/cash-discount-summary.cash-text" />
+                    <span className={`${handles.cashNumber} b`}><FormattedCurrency value={cashPrice} />{' '}{discountDescription}</span>
                 </p>
             </div>
         )
@@ -42,12 +39,15 @@ const CashDiscountSummary: StorefrontFunctionComponent<Props> = ({ percentageNum
 
 interface Props {
     percentageNumber: number,
-    minimumPrice: number
+    minimumPrice: number,
+    discountDescription: string
+
 }
 
 CashDiscountSummary.defaultProps = {
     percentageNumber: 0,
-    minimumPrice: 0
+    minimumPrice: 0,
+    discountDescription: " A Vista"
 }
 
 const messages = defineMessages({
@@ -66,6 +66,10 @@ const messages = defineMessages({
     minimumtitle: {
         defaultMessage: '',
         id: 'admin/editor.cash-discount-summary.minimumprice'
+    },
+    descriptiondiscount: {
+        defaultMessage: '',
+        id: 'admin/editor.cash-discount-summary.descriptiondiscount'
     }
 })
 
@@ -76,15 +80,18 @@ CashDiscountSummary.schema = {
     properties: {
         percentageNumber: {
             title: messages.percentagetitle.id,
-
             type: "number",
             default: 0
         },
         minimumPrice: {
             title: messages.minimumtitle.id,
-
             type: "number",
             default: 0
+        },
+        discountDescription: {
+            title: messages.descriptiondiscount.id,
+            type: "string",
+            default: "A Vista"
         }
     },
 }
