@@ -24,16 +24,6 @@ const CashDiscountSummary: StorefrontFunctionComponent<Props> = ({
     }
   }, [selectedItem, percentageNumber])
 
-  useEffect(() => {
-    if (selectedItem) {
-      const priceCurrent = selectedItem.sellers[0].commertialOffer.Price
-      const percentage = percentageNumber / 100
-      const discountResult = priceCurrent * percentage
-      setCashPrice((priceCurrent - discountResult).toFixed(2).replace('.', ','))
-      setPrice(priceCurrent)
-    }
-  }, [selectedItem, percentageNumber])
-
   const handles = useCssHandles(CSS_HANDLES_CASH)
 
   if (price >= minimumPrice && cashPrice != price.toString() && price != 0) {
