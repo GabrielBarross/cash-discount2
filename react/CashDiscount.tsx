@@ -5,11 +5,13 @@ import { FormattedMessage, defineMessages } from 'react-intl'
 import { useRuntime } from 'vtex.render-runtime'
 
 const CSS_HANDLES_CASH = ['cashContainer', 'cashText', 'cashNumber']
-const CashDiscount: StorefrontFunctionComponent<Props> = ({ percentageNumber, minimumPrice }) => {
-
+const CashDiscount: StorefrontFunctionComponent<Props> = ({
+  percentageNumber,
+  minimumPrice,
+}) => {
   const runtime = useRuntime()
   const {
-    culture: { customCurrencySymbol }
+    culture: { customCurrencySymbol },
   } = runtime
 
   const { selectedItem } = useProduct()
@@ -18,9 +20,8 @@ const CashDiscount: StorefrontFunctionComponent<Props> = ({ percentageNumber, mi
   const percentage = percentageNumber / 100
   useEffect(() => {
     const discountResult = price * percentage
-    setCashPrice((price - discountResult).toFixed(2).replace(".", ","))
+    setCashPrice((price - discountResult).toFixed(2).replace('.', ','))
   }, [percentageNumber])
-
 
   const handles = useCssHandles(CSS_HANDLES_CASH)
 
@@ -28,41 +29,45 @@ const CashDiscount: StorefrontFunctionComponent<Props> = ({ percentageNumber, mi
     return (
       <div className={`${handles.cashContainer}`}>
         <p className={`${handles.cashText} f4 c-emphasis ma0`}>
-          <span className={`${handles.cashNumber} b`}>{customCurrencySymbol}{cashPrice}</span>{' '}
+          <span className={`${handles.cashNumber} b`}>
+            {customCurrencySymbol}
+            {cashPrice}
+          </span>{' '}
           <FormattedMessage id="store/cash-discount.cash-text" />
         </p>
       </div>
     )
-  } return <></>
+  }
+  return <></>
 }
 
 interface Props {
-  percentageNumber: number,
+  percentageNumber: number
   minimumPrice: number
 }
 
 CashDiscount.defaultProps = {
   percentageNumber: 0,
-  minimumPrice: 0
+  minimumPrice: 0,
 }
 
 const messages = defineMessages({
   title: {
     defaultMessage: '',
-    id: 'admin/editor.cash-discount.title'
+    id: 'admin/editor.cash-discount.title',
   },
   description: {
     defaultMessage: '',
-    id: 'admin/editor.cash-discount.description'
+    id: 'admin/editor.cash-discount.description',
   },
   percentagetitle: {
     defaultMessage: '',
-    id: 'admin/editor.cash-discount.percentage'
+    id: 'admin/editor.cash-discount.percentage',
   },
   minimumtitle: {
     defaultMessage: '',
-    id: 'admin/editor.cash-discount.minimumprice'
-  }
+    id: 'admin/editor.cash-discount.minimumprice',
+  },
 })
 
 CashDiscount.schema = {
@@ -73,15 +78,15 @@ CashDiscount.schema = {
     percentageNumber: {
       title: messages.percentagetitle.id,
       description: messages.percentagetitle.id,
-      type: "number",
-      default: 0
+      type: 'number',
+      default: 0,
     },
     minimumPrice: {
       title: messages.minimumtitle.id,
       description: messages.minimumtitle.id,
-      type: "number",
-      default: 0
-    }
+      type: 'number',
+      default: 0,
+    },
   },
 }
 

@@ -1,3 +1,3 @@
 declare module 'vtex.render-runtime' {
-    export function useRuntime(): any
+  export function useRuntime(): any
 }
