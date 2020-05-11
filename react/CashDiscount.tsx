@@ -11,13 +11,15 @@ const CashDiscount: StorefrontFunctionComponent<Props> = ({
   discountDescription,
 }) => {
   const { selectedItem } = useProduct()
-  const price = selectedItem.sellers[0].commertialOffer.Price
+  const price = selectedItem?.sellers?.[0]?.commertialOffer?.Price ?? 0
   const [cashPrice, setCashPrice] = useState<string>(price.toFixed(2))
   const percentage = percentageNumber / 100
   useEffect(() => {
-    const discountResult = price * percentage
-    setCashPrice((price - discountResult).toFixed(2))
-  }, [percentageNumber])
+    if (selectedItem) {
+      const discountResult = price * percentage
+      setCashPrice((price - discountResult).toFixed(2))
+    }
+  }, [selectedItem, percentageNumber])
 
   const handles = useCssHandles(CSS_HANDLES_CASH)
 
