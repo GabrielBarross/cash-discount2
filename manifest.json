@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "cash-discount",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "title": "cash-discount",
   "description": "cash-discount",
   "builders": {
