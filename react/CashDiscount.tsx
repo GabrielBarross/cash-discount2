@@ -19,7 +19,7 @@ const CashDiscount: StorefrontFunctionComponent<Props> = ({
       const discountResult = price * percentage
       setCashPrice((price - discountResult).toFixed(2))
     }
-  }, [selectedItem, percentageNumber])
+  }, [selectedItem, percentageNumber, price, percentage])
 
   const handles = useCssHandles(CSS_HANDLES_CASH)
 
