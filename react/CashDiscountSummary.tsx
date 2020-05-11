@@ -26,7 +26,7 @@ const CashDiscountSummary: StorefrontFunctionComponent<Props> = ({
 
   const handles = useCssHandles(CSS_HANDLES_CASH)
 
-  if (price >= minimumPrice && cashPrice != price.toString() && price != 0) {
+  if (price >= minimumPrice && cashPrice !== price.toString() && price !== 0) {
     return (
       <div className={`${handles.cashContainer}`}>
         <p className={`${handles.cashText} f4 c-emphasis ma0`}>
