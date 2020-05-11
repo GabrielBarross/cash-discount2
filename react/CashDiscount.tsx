@@ -19,11 +19,11 @@ const CashDiscount: StorefrontFunctionComponent<Props> = ({
       const discountResult = price * percentage
       setCashPrice((price - discountResult).toFixed(2))
     }
-  }, [selectedItem, percentageNumber])
+  }, [selectedItem, percentageNumber, price, percentage])
 
   const handles = useCssHandles(CSS_HANDLES_CASH)
 
-  if (price >= minimumPrice && cashPrice != price && price != 0) {
+  if (price >= minimumPrice && cashPrice !== price && price !== 0) {
     return (
       <div className={`${handles.cashContainer}`}>
         <p className={`${handles.cashText} f4 c-emphasis ma0`}>
